@@ -8,7 +8,7 @@
 */
 
 // Define
-#define NUM_LEDS 15
+#define NUM_LEDS 50
 #define DATA_PIN 4
 #define BTN_PIN 0
 #define BTN_DELAY 250
