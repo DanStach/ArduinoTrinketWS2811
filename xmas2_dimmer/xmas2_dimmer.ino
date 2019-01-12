@@ -32,9 +32,49 @@ void setup() {
   strip.show(); // Initialize all pixels to 'off'
 }
 
-void loop() {
-  brighten();
-  darken();
+void loop() { 
+
+
+
+  // goes to black, issue that all bulbs have to be same color
+  FadeInOut(0xff, 0x77, 0x00);
+  delay(1000);
+
+  // white to dark, issue that this code never goes to black
+  //brighten();
+  //darken();
+}
+
+void FadeInOut(byte red, byte green, byte blue){
+  float r, g, b;
+
+  
+  for(int k = 0; k < 256; k=k+1) { 
+    r = (k/256.0)*red;
+    g = (k/256.0)*green;
+    b = (k/256.0)*blue;
+    setAll(r,g,b);
+    delay(10);
+    strip.show();
+  }
+
+  delay(1000);
+
+  for(int k = 255; k >= 0; k=k-1) 
+  {
+    r = (k/256.0)*red;
+    g = (k/256.0)*green;
+    b = (k/256.0)*blue;
+    setAll(r,g,b);
+    strip.show();
+  }
+}
+
+void setAll(byte red, byte green, byte blue) {
+  for(int i = 0; i < strip.numPixels() ; i++ ) {
+    strip.setPixelColor(i, red, green, blue); 
+  }
+  strip.show();
 }
 
 // 0 to 255
@@ -54,8 +94,7 @@ void brighten() {
 // 255 to 0
 void darken() {
   Serial.begin(9600);
-  uint16_t i, j;
-
+  uint16_t i, j; 
   for (j = 255; j > 45; j--) {
     for (i = 0; i < strip.numPixels(); i++) {
       strip.setPixelColor(i, j, j, j);
