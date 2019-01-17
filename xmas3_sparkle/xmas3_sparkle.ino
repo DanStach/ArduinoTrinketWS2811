@@ -33,7 +33,30 @@ void setup() {
 }
 
 void loop() {
-  Sparkle(0xff, 0xff, 0xff, 0); //byte red, byte green, byte blue, int SpeedDelay
+  // sparkle white
+  for(int i = 1000; i > 0 ; i-- )
+  {
+      Sparkle(0xff, 0xff, 0xff, 0); //byte red, byte green, byte blue, int SpeedDelay
+  }
+  
+  delay(1000);
+  
+  // sparkle random color
+  for(int i = 1000; i > 0 ; i-- )
+  {
+      Sparkle(random(255), random(255), random(255), 10);
+  }
+  delay(1000);
+
+  // sparkle white
+  for(int i = 1000; i > 0 ; i-- )
+  {
+      Sparkle(random(25)*10, random(25)*10, random(25)*10, 10);
+  }
+  delay(1000);
+
+
+  
 }
 
 void Sparkle(byte red, byte green, byte blue, int SpeedDelay) {
